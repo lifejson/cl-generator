@@ -1,5 +1,4 @@
 from docx import Document
-from docx.shared import Inches
 from copy import deepcopy
 import argparse
 import os
@@ -37,13 +36,14 @@ def generate(args):
     out_doc.save(f"{output_path}/{company_name}_cover_letter_{job_position}_{current_time}.docx")
     print("Generated Successfully :)")
     
-
+available_args = {
+    'jp': 'job_position',
+    'cn': 'company_name'
+}
 parser = argparse.ArgumentParser(description='Input')
-parser.add_argument('--jp', dest='job_position',
-                    help='Desire job position name of your wishes my dear')
-
-parser.add_argument('--cn', dest='company_name',
-                    help='Desire company name of your wishes my dear')
+for short_name, long_name in available_args.items():
+    parser.add_argument(f'-{short_name}', f'--{long_name}', dest=f'{long_name}',
+                        help=f'Desire {long_name}')
 
 args = parser.parse_args()
 generate(args)
