@@ -1,9 +1,7 @@
 from docx import Document
-from copy import deepcopy
 import argparse
 import os
 import datetime
-import docx
 
 def set_para_data(out_doc, in_para, modified_text):
     out_para = out_doc.add_paragraph(modified_text)
