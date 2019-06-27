@@ -29,7 +29,7 @@ def generate(args):
         os.mkdir(output_path)
     out_doc = Document()
     for para in document.paragraphs:
-        modified_text = para.text.format(**{'company_name':company_name, 'job_position':job_position})
+        modified_text = para.text.format(**args.__dict__)
         out_para = set_para_data(out_doc, para, modified_text)
     out_doc.save(f"{output_path}/{company_name}_cover_letter_{job_position}_{current_time}.docx")
     print("Generated Successfully :)")
